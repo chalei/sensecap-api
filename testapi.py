@@ -8,8 +8,8 @@ host = 'https://sensecap.seeed.cc/openapi/view_latest_telemetry_data'
 device_eui = '?device_eui=2CF7F1C0530003E4'
 measurement_id = '&measurement_id='
 channel_index = '&channel_index=1'
-auth = ('C1908H1K8QZ71QQI',
-'373D72F93E864D9DB6F914318E03646178F10B090EC54EFDAFA3A7385A61D7B1')
+auth = ('XXXXXXXXX',
+'XXXXXXXXXXXXX')
 # Sensor parameters
 sensorsInfo = ['4198', '4197']
 DataExtracted = {}
