@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\DynamicRouterHandler;
+use App\Http\Controllers\DynamicRouterHandler;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,8 +48,8 @@ Route::group(['middleware' => 'checksession'], function () {
         })->name('users.all');
     });
 
-    // Route::get('/api/{any}', [DynamicRouterHandler::class, 'getAPI'])->where('any', '.*');
-    // Route::post('/api/{any}', [DynamicRouterHandler::class, 'postAPI'])->where('any', '.*');
-    // Route::put('/api/{any}', [DynamicRouterHandler::class, 'putAPI'])->where('any', '.*');
-    // Route::delete('/api/{any}', [DynamicRouterHandler::class, 'deleteAPI'])->where('any', '.*');
+    Route::get('/apis/{any}', [DynamicRouterHandler::class, 'getAPI'])->where('any', '.*');
+    Route::post('/apis/{any}', [DynamicRouterHandler::class, 'postAPI'])->where('any', '.*');
+    Route::put('/apis/{any}', [DynamicRouterHandler::class, 'putAPI'])->where('any', '.*');
+    Route::delete('/apis/{any}', [DynamicRouterHandler::class, 'deleteAPI'])->where('any', '.*');
 });

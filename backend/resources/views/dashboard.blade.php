@@ -110,60 +110,68 @@
 @endsection
 @push('scripts')
 <script>
+    $(document).ready(function() {
+        getDataLocation()
+    });
     mapboxgl.accessToken = 'pk.eyJ1IjoiYnVkaW9kYW5rIiwiYSI6ImNrMGRyM2RuYTA2ZG0zbWsxdWx1cjhxMG0ifQ.4lvzq1eA8Kp8Pg7w5lAFRg';
 
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-74.5, 40], // Starting position [lng, lat]
+        center: [106.95, -5.76], // Starting position [lng, lat]
         zoom: 6 // Starting zoom level
     });
 
-    const geojson = {
-        'type': 'FeatureCollection',
-        'features': [{
-                'type': 'Feature',
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-77.032, 38.913]
-                },
-                'properties': {
-                    'title': 'Device 1',
-                    'description': 'Washington, D.C.'
-                }
+    let geoJSON = [];
+
+    function getDataLocation() {
+        const data = {
+            device_eui: '2CF7F1C0530003E4'
+        }
+        $.ajax({
+            type: 'POST',
+            url: `/apis/transaction/location/show-device`,
+            data: JSON.stringify(data),
+            dataType: 'JSON',
+            contentType: "application/json; charset=utf-8",
+            success: function(res) {
+                $.each(res.result, function(index, item) {
+                    let location = {
+                        device_name: item.device.device_name,
+                        coordinates: [item.longitude, item.latitude],
+                        create_time: item.created_tm,
+                        online_status: item.device.online_status
+                    }
+                    geoJSON.push(location)
+                })
+                setMarkerMap()
             },
-            {
-                'type': 'Feature',
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [-122.414, 37.776]
-                },
-                'properties': {
-                    'title': 'Device 2',
-                    'description': 'San Francisco, California'
-                }
+            error: function(xhr, status, error) {
+                errorMessage(xhr, status, error)
             }
-        ]
-    };
+        });
+    }
 
-    // add markers to map
-    for (const feature of geojson.features) {
-        // create a HTML element for each feature
-        const el = document.createElement('div');
-        el.className = 'marker';
+    function setMarkerMap() {
+        // add markers to map
+        for (const feature of geoJSON) {
+            // create a HTML element for each feature
+            const el = document.createElement('div');
+            el.className = 'marker';
 
-        // make a marker for each feature and add it to the map
-        new mapboxgl.Marker(el)
-            .setLngLat(feature.geometry.coordinates)
-            .setPopup(
-                new mapboxgl.Popup({
-                    offset: 25
-                }) // add popups
-                .setHTML(
-                    `<h5>${feature.properties.title}</h5><p>${feature.properties.description}</p>`
+            // make a marker for each feature and add it to the map
+            new mapboxgl.Marker(el)
+                .setLngLat(feature.coordinates)
+                .setPopup(
+                    new mapboxgl.Popup({
+                        offset: 25
+                    }) // add popups
+                    .setHTML(
+                        `<h5>${feature.device_name}</h5><p>${feature.online_status}</p><p>${feature.create_time}</p>`
+                    )
                 )
-            )
-            .addTo(map);
+                .addTo(map);
+        }
     }
 </script>
 @endpush

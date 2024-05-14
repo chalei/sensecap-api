@@ -28,4 +28,9 @@ class Location extends Model
             $model->created_at  = now();
         });
     }
+
+    public function device()
+    {
+        return $this->belongsTo('App\Models\Master\Device', 'node_eui', 'node_eui');
+    }
 }

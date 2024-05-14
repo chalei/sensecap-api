@@ -60,7 +60,7 @@
                     if (result.isConfirmed) {
                         // Permintaan HTTP ke endpoint logout
                         $.ajax({
-                            url: '/api/auth/logout',
+                            url: '/apis/auth/logout',
                             method: 'POST',
                             success: function(response) {
                                 Swal.fire({

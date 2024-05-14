@@ -67,7 +67,9 @@
 											use code for form submit
 											<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
 										-->
-                                        <a class="btn btn-primary btn-lg btn-block" id="signin" href="#" onclick="login()">Sign In</a>
+                                        <a class="btn btn-primary btn-lg btn-block" id="signin" href="#" onclick="login()">Sign In
+                                            <span class="spinner-border spinner-border-sm d-none mb-1" role="status" aria-hidden="true"></span>
+                                        </a>
                                     </div>
                                     <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">
                                         OR
@@ -91,10 +93,6 @@
     <script src="/assets/vendors/scripts/sweetalert2.min.js"></script>
 
     <script>
-        function saveTokenToLocalStorage(access_token) {
-            localStorage.setItem('access_token', JSON.stringify(access_token));
-        }
-
         $('#password').on('keypress', function(event) {
             if (event.key === "Enter") {
                 // Cancel the default action, if needed
@@ -116,7 +114,7 @@
             $.ajax({
                 method: "post",
                 data: formData,
-                url: '/api/auth/login',
+                url: '/apis/auth/login',
                 success: function(res) {
                     Swal.fire({
                         toast: true,

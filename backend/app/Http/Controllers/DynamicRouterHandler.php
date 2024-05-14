@@ -16,12 +16,12 @@ class DynamicRouterHandler extends Controller
             $response = HTTP::withOptions([
                 'timeout' => 0
             ])->withHeaders([
-                'Authorization' => 'Bearer ' . $session['access_token']
-            ])->get(config('custom.target_api') . $url, $request->all());
+                'Authorization' => 'Bearer ' . $session['token']
+            ])->get(config('custom.TARGET_API') . $url, $request->all());
         } else {
             $response = HTTP::withOptions([
                 'timeout' => 0
-            ])->get(config('custom.target_api') . $url);
+            ])->get(config('custom.TARGET_API') . $url);
         }
 
         $statusCode = $response->getStatusCode();
@@ -67,20 +67,20 @@ class DynamicRouterHandler extends Controller
                 $response = HTTP::withOptions([
                     'timeout' => 0
                 ])->withHeaders([
-                    'Authorization' => 'Bearer ' . $session['access_token']
+                    'Authorization' => 'Bearer ' . $session['token']
                 ])->attach('file', file_get_contents($file), $file->getClientOriginalName())
-                    ->post(config('custom.target_api') . $url);
+                    ->post(config('custom.TARGET_API') . $url);
             } else {
                 $response = HTTP::withOptions([
                     'timeout' => 0
                 ])->withHeaders([
-                    'Authorization' => 'Bearer ' . $session['access_token']
-                ])->post(config('custom.target_api') . $url, $request);
+                    'Authorization' => 'Bearer ' . $session['token']
+                ])->post(config('custom.TARGET_API') . $url, $request);
             }
         } else {
             $response = HTTP::withOptions([
                 'timeout' => 0
-            ])->post(config('custom.target_api') . $url, $request);
+            ])->post(config('custom.TARGET_API') . $url, $request);
         }
 
         $statusCode = $response->getStatusCode();
@@ -94,9 +94,9 @@ class DynamicRouterHandler extends Controller
             return response()->json(\json_decode($response->getBody()->getContents()), $statusCode);
         };
 
-        if ($url == 'login') {
+        if ($url == 'auth/login') {
             $result = \json_decode($response->getBody()->getContents(), true);
-            $request->session()->put('auth_session', $result['result']['item']);
+            $request->session()->put('auth_session', $result['result']);
         }
 
         return $response;
@@ -109,12 +109,12 @@ class DynamicRouterHandler extends Controller
             $response = HTTP::withOptions([
                 'timeout' => 0
             ])->withHeaders([
-                'Authorization' => 'Bearer ' . $session['access_token']
-            ])->put(config('custom.target_api') . $url, $request);
+                'Authorization' => 'Bearer ' . $session['token']
+            ])->put(config('custom.TARGET_API') . $url, $request);
         } else {
             $response = HTTP::withOptions([
                 'timeout' => 0
-            ])->put(config('custom.target_api') . $url, $request);
+            ])->put(config('custom.TARGET_API') . $url, $request);
         }
 
         $statusCode = $response->getStatusCode();
@@ -133,12 +133,12 @@ class DynamicRouterHandler extends Controller
             $response = HTTP::withOptions([
                 'timeout' => 0
             ])->withHeaders([
-                'Authorization' => 'Bearer ' . $session['access_token']
-            ])->delete(config('custom.target_api') . $url, $request->all());
+                'Authorization' => 'Bearer ' . $session['token']
+            ])->delete(config('custom.TARGET_API') . $url, $request->all());
         } else {
             $response = HTTP::withOptions([
                 'timeout' => 0
-            ])->delete(config('custom.target_api') . $url);
+            ])->delete(config('custom.TARGET_API') . $url);
         }
 
         $statusCode = $response->getStatusCode();

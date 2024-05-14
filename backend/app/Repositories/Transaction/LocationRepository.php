@@ -78,7 +78,8 @@ class LocationRepository
     public function showDataNodeEui($request): array
     {
         try {
-            $location = Location::where('node_eui', $request->device_eui)->get();
+            $location = Location::with('device')
+                ->where('node_eui', $request->device_eui)->get();
 
             if (!$location) {
                 return $this->responseArray(200, 'Data not available.', []);
