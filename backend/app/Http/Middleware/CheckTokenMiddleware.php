@@ -18,9 +18,7 @@ class CheckTokenMiddleware
     {
         $uri = $request->route()->uri;
 
-        if (!config('custom.auth_use_api')) {
-            return $next($request);
-        }
+
         if (session()->missing('auth_session')) {
             if (str_contains($uri, 'api')) {
                 if (str_contains($request->route()->parameters['any'], 'login')) {
