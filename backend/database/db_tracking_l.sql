@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 13, 2024 at 05:10 PM
+-- Generation Time: May 30, 2024 at 03:47 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.1.6
 
@@ -59,7 +59,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2024_05_09_044210_create_tbl_device_table', 1),
-(6, '2024_05_09_044253_create_tbl_location_table', 1);
+(6, '2024_05_09_044253_create_tbl_location_table', 1),
+(8, '2024_05_30_160941_create_tbl_vehicle_table', 2);
 
 -- --------------------------------------------------------
 
@@ -97,14 +98,18 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
-(1, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '54ee0cfb35ababaf3fd1712477a53c9ef20c0fb913069f2b226dfd30c74859c2', '{\"expires_at\":\"2024-05-09T17:38:31.959325Z\"}', NULL, NULL, '2024-05-09 15:38:31', '2024-05-09 15:38:31'),
-(2, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', 'ebaa4e1ac3f074b9d77b53cde8abb90862107c9c7ae5abbf742c78dddee06375', '{\"expires_at\":\"2024-05-09T17:39:22.119175Z\"}', NULL, NULL, '2024-05-09 15:39:22', '2024-05-09 15:39:22'),
-(3, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '5ad8a156789d61205d9caea2d43b72add1e35cc8bded6b6be03cd0b59f1dccf8', '{\"expires_at\":\"2024-05-11T06:04:59.535347Z\"}', NULL, NULL, '2024-05-11 04:04:59', '2024-05-11 04:04:59'),
-(4, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '6e1f7ba8efa30dd805f5f6e83ea2f62484804b78ccd22309542655932464caa0', '{\"expires_at\":\"2024-05-12T16:38:18.275000Z\"}', '2024-05-12 15:49:05', NULL, '2024-05-12 14:38:18', '2024-05-12 15:49:05'),
-(5, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '97d7d658b5d8377a8fe5e0cd89e9d5a8c3ea17cd35545bea3fb3a6fca8f8c151', '{\"expires_at\":\"2024-05-13T15:16:34.493244Z\"}', '2024-05-13 14:34:09', NULL, '2024-05-13 13:16:34', '2024-05-13 14:34:09'),
-(6, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '35ea97edf3bcbb0fd29150f922f470ab27b9260a55a5f6bc5aca829206a7de18', '{\"expires_at\":\"2024-05-13T16:46:08.843264Z\"}', NULL, NULL, '2024-05-13 14:46:08', '2024-05-13 14:46:08'),
-(7, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', 'dcc9c0fa6c36e4421386ca8a72455228d745a5f8020d4944e187f4b71e743f09', '{\"expires_at\":\"2024-05-13T16:48:42.633302Z\"}', NULL, NULL, '2024-05-13 14:48:42', '2024-05-13 14:48:42'),
-(8, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', 'f02841835cc7c8811ab4b0e28c9e5a233da24bc2a2bd188a731836e21d0e195b', '{\"expires_at\":\"2024-05-13T16:49:55.918693Z\"}', NULL, NULL, '2024-05-13 14:49:55', '2024-05-13 14:49:55');
+(16, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '7487f54a98f7400ce897c8c057d98284a6179a475bf464b6d231857c51a0af5b', '{\"expires_at\":\"2024-05-17T17:02:27.482484Z\"}', '2024-05-17 15:03:54', NULL, '2024-05-17 15:02:27', '2024-05-17 15:03:54'),
+(17, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '959612bb3438b01a7d32d28de6bd2566db8e0b7ef73aea5b30a2aa74c81a4fd2', '{\"expires_at\":\"2024-05-19T08:57:42.468541Z\"}', '2024-05-19 06:58:05', NULL, '2024-05-19 06:57:42', '2024-05-19 06:58:05'),
+(18, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', 'd1f4b350f4290866f991029eccbc3777e45fa3dfae7726ec0ac3a543ab01ab66', '{\"expires_at\":\"2024-05-20T16:19:29.410938Z\"}', '2024-05-20 14:21:35', NULL, '2024-05-20 14:19:29', '2024-05-20 14:21:35'),
+(19, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '8ae647ea2bae449171bdadd59a2170e4cc78fc54489d6ccfc0f8df0cc8ed14fe', '{\"expires_at\":\"2024-05-20T16:23:39.691619Z\"}', '2024-05-20 14:23:40', NULL, '2024-05-20 14:23:39', '2024-05-20 14:23:40'),
+(20, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '21d90d793bb571117cd4f49943c411eb51215c47dde128d60d8aed6e4bbd177e', '{\"expires_at\":\"2024-05-25T04:57:57.240335Z\"}', NULL, NULL, '2024-05-25 02:57:57', '2024-05-25 02:57:57'),
+(21, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '3179e0ba9b2b876ee219d9944077428ab4ea72ded4b0c685c4020d95818689a2', '{\"expires_at\":\"2024-05-25T04:58:02.418362Z\"}', '2024-05-25 04:36:29', NULL, '2024-05-25 02:58:02', '2024-05-25 04:36:29'),
+(22, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '84094f86cbdff90f33a1eb830315f0791c581ab3feaa80c6f5022701bd055dac', '{\"expires_at\":\"2024-05-25T11:22:09.828057Z\"}', '2024-05-25 09:44:43', NULL, '2024-05-25 09:22:09', '2024-05-25 09:44:43'),
+(23, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '800fc10892d5779d63f233c3271923bb0de6b0d512ab8654a4a38e213818c503', '{\"expires_at\":\"2024-05-25T13:31:43.421018Z\"}', '2024-05-25 11:31:44', NULL, '2024-05-25 11:31:43', '2024-05-25 11:31:44'),
+(24, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '96f0a25ca33e03922f008853a54f653cff0f5cca9af6022f712d09cd09ab7e2f', '{\"expires_at\":\"2024-05-26T10:59:42.883851Z\"}', '2024-05-26 08:59:43', NULL, '2024-05-26 08:59:42', '2024-05-26 08:59:43'),
+(25, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '20632b48855e84c7e71341fa4b05e7d139beb4164c003eb20ec3e4518354928f', '{\"expires_at\":\"2024-05-30T13:31:59.566047Z\"}', '2024-05-30 11:59:05', NULL, '2024-05-30 11:31:59', '2024-05-30 11:59:05'),
+(26, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '6463cc080a8de785d2494f407d118f7c832d3560073029f923b4d6ce7e643c70', '{\"expires_at\":\"2024-05-30T13:39:34.829998Z\"}', '2024-05-30 11:55:04', NULL, '2024-05-30 11:39:34', '2024-05-30 11:55:04'),
+(27, 'App\\Models\\User', 'c77f157e-437e-4b41-a347-7581ff453233', 'MyApp', '16e7c121af9e00bea5d2619a053cacb576ff4bed7c4f5d9a182ed0a8aeb8d2f9', '{\"expires_at\":\"2024-05-30T15:43:56.228756Z\"}', '2024-05-30 13:43:56', NULL, '2024-05-30 13:43:56', '2024-05-30 13:43:56');
 
 -- --------------------------------------------------------
 
@@ -150,7 +155,50 @@ CREATE TABLE `tbl_location` (
 --
 
 INSERT INTO `tbl_location` (`id`, `longitude`, `latitude`, `node_eui`, `created_tm`, `created_at`) VALUES
-(1, '106.596504', '-6.186363', '2CF7F1C0530003E4', '2024-05-05 01:24:40', '2024-05-13 21:11:06');
+(1, '106.596504', '-6.186363', '2CF7F1C0530003E4', '2024-05-05 01:24:40', '2024-05-13 21:11:06'),
+(2, '106.6526781', '-6.255674', '2CF7F1F054300076', '2024-05-30 09:49:54', '2024-05-30 16:49:54'),
+(3, '106.7555344', '-6.22972', '2CF7F1F054300077', '2024-05-30 09:49:54', '2024-05-30 16:49:54'),
+(4, '106.8421254', '-6.1849693', '2CF7F1F054300078', '2024-05-30 09:49:54', '2024-05-30 16:49:54'),
+(5, '106.9516524', '-6.1523892', '2CF7F1F054300079', '2024-05-30 09:49:54', '2024-05-30 16:49:54'),
+(6, '107.198592', '-6.344213', '2CF7F1F054300080', '2024-05-30 09:49:54', '2024-05-30 16:49:54'),
+(7, '107.4715493', '-6.44871', '2CF7F1F054300081', '2024-05-30 09:49:54', '2024-05-30 16:49:54'),
+(8, '107.5596118', '-6.9268092', '2CF7F1F054300082', '2024-05-30 09:49:54', '2024-05-30 16:49:54'),
+(9, '106.7519196', '-6.7138301', '2CF7F1F054300083', '2024-05-30 09:49:54', '2024-05-30 16:49:54'),
+(10, '106.6867892', '-6.3477536', '2CF7F1F054300084', '2024-05-30 09:49:54', '2024-05-30 16:49:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_vehicle`
+--
+
+CREATE TABLE `tbl_vehicle` (
+  `vehicle_uuid` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `node_eui` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `license_plate` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stnk_date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `created_by` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `updated_by` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_vehicle`
+--
+
+INSERT INTO `tbl_vehicle` (`vehicle_uuid`, `node_eui`, `license_plate`, `owner_name`, `stnk_date`, `created_at`, `created_by`, `updated_by`, `updated_at`) VALUES
+('abc-abc-123', '2CF7F1C0530003E4', 'A 5512 BYQ', 'Dede Rohmat', '2021-10-09', '2024-05-30 09:20:00', 'Admin', 'Admin', '2024-05-30 09:20:00'),
+('bde-bde-123', '2CF7F1F054300076', 'B 1145 ZA', 'Freddy Budiman', '2023-11-09', '2024-05-30 09:32:25', 'Admin', 'Admin', '2024-05-30 09:32:25'),
+('bnm-bnm-123', '2CF7F1F054300084', 'B 5677 MN', 'Koesnadi', '2022-11-21', '2024-05-30 09:32:25', 'Admin', 'Admin', '2024-05-30 09:32:25'),
+('fge-fge-123', '2CF7F1F054300077', 'B 6678 QBA', 'Alonso', '2022-02-11', '2024-05-30 09:32:25', 'Admin', 'Admin', '2024-05-30 09:32:25'),
+('frt-frt-123', '2CF7F1F054300082', 'B 4555 RQQ', 'Joko Sudirso', '2023-07-01', '2024-05-30 09:32:25', 'Admin', 'Admin', '2024-05-30 09:32:25'),
+('ghi-ghi-123', '2CF7F1F054300079', 'L 555 XUS', 'Che Le', '2024-01-11', '2024-05-30 09:32:25', 'Admin', 'Admin', '2024-05-30 09:32:25'),
+('lhg-lhg-123', '2CF7F1F054300080', 'KT 1433 RW', 'Martin Joe', '2022-05-30', '2024-05-30 09:32:25', 'Admin', 'Admin', '2024-05-30 09:32:25'),
+('sdf-sdf-123', '2CF7F1F054300081', 'R 6565 SQ', 'Kasdi', '2021-11-30', '2024-05-30 09:32:25', 'Admin', 'Admin', '2024-05-30 09:32:25'),
+('wer-wer-123', '2CF7F1F054300078', 'A 44 Q', 'Alex Firli', '2020-06-15', '2024-05-30 09:32:25', 'Admin', 'Admin', '2024-05-30 09:32:25'),
+('wty-wty-123', '2CF7F1F054300083', 'B 9888 RT', 'Renita Kusuma', '2021-02-02', '2024-05-30 09:32:25', 'Admin', 'Admin', '2024-05-30 09:32:25');
 
 -- --------------------------------------------------------
 
@@ -222,6 +270,13 @@ ALTER TABLE `tbl_location`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_vehicle`
+--
+ALTER TABLE `tbl_vehicle`
+  ADD PRIMARY KEY (`vehicle_uuid`),
+  ADD UNIQUE KEY `tbl_vehicle_node_eui_unique` (`node_eui`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -242,19 +297,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tbl_location`
 --
 ALTER TABLE `tbl_location`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

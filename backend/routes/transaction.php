@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::controller(LocationController::class)->prefix('location')->name('location.')->group(function () {
             Route::post('/insert-sensecap', 'insertDataSenseCap')->name('insert-sensecap');
             Route::post('/show-device', 'showDataNodeEui')->name('show-device');
+            Route::post('/show-vehicle-location', 'showVehicleLocation')->name('show-vehicle-location');
             // Route::post('/show', 'showData')->name('show');
             // Route::get('/show-by-id/{id}', 'showDataId')->name('show-by-id');
             // Route::post('/insert', 'insertData')->name('insert');

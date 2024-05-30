@@ -33,4 +33,9 @@ class Location extends Model
     {
         return $this->belongsTo('App\Models\Master\Device', 'node_eui', 'node_eui');
     }
+
+    public function vehicle()
+    {
+        return $this->belongsTo('App\Models\Master\Vehicle', 'node_eui', 'node_eui');
+    }
 }

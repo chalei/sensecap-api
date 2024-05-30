@@ -13,13 +13,18 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li>
-                    <a href="/dashboard" class="dropdown-toggle no-arrow">
+                    <a href="/" class="dropdown-toggle no-arrow">
                         <span class="micon bi bi-house"></span><span class="mtext">Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <a href="/devices/all" class="dropdown-toggle no-arrow">
-                        <span class="micon bi bi-diagram-3-fill"></span><span class="mtext">Device</span>
+                        <span class="micon bi bi-pci-card"></span><span class="mtext">Device</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/vehicles/all" class="dropdown-toggle no-arrow">
+                        <span class="micon bi bi-diagram-3-fill"></span><span class="mtext">Vehicle</span>
                     </a>
                 </li>
                 <li>

@@ -38,4 +38,16 @@ class LocationService
         }
         return $this->sendError($response['message'], $code);
     }
+
+    /**
+     * TODO : Fungsi untuk menampilkan data vehicle and location.
+     */
+    public function showVehicleLocation($request)
+    {
+        list($code, $response) = $this->locationRepository->showVehicleLocation($request);
+        if ($code == Response::HTTP_OK) {
+            return $this->sendResponse($response['data'], $response['message']);
+        }
+        return $this->sendError($response['message'], $code);
+    }
 }

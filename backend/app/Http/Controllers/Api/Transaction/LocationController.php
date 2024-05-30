@@ -28,4 +28,12 @@ class LocationController extends Controller
     {
         return $this->locationService->showDataNodeEui($request);
     }
+
+    /**
+     * TODO : Fungsi untuk menampilkan data vehicle and location.
+     */
+    public function showVehicleLocation(Request $request)
+    {
+        return $this->locationService->showVehicleLocation($request);
+    }
 }

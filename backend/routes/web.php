@@ -42,6 +42,12 @@ Route::group(['middleware' => 'checksession'], function () {
         })->name('locations.all');
     });
 
+    Route::group(['prefix' => 'vehicles'], function () {
+        Route::get('all', function () {
+            return view('vehicles.all');
+        })->name('vehicles.all');
+    });
+
     Route::group(['prefix' => 'users'], function () {
         Route::get('all', function () {
             return view('users.all');

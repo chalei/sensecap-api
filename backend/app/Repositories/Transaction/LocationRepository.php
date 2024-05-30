@@ -89,4 +89,25 @@ class LocationRepository
         }
         return $this->responseArray(200, 'Success to Get data device.', $location);
     }
+
+    /** Fungsi untuk menampilkan data dari model atau database berdasarkan request yang telah diberikan oleh service*/
+    public function showVehicleLocation($request): array
+    {
+        try {
+            $location = Location::with('vehicle');
+
+            if ($request->device_eui != null) {
+                $location = $location->where('node_eui', $request->device_eui);
+            }
+
+            $location = $location->get();
+
+            if (!$location) {
+                return $this->responseArray(200, 'Data not available.', []);
+            }
+        } catch (\Exception $e) {
+            return $this->responseArray(500,  'Failed to process data. Error: ' . $e->getMessage(), null);
+        }
+        return $this->responseArray(200, 'Success to Get data vehicle.', $location);
+    }
 }
